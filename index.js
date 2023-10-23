@@ -52,4 +52,42 @@ const promptUser = () => {
     ]);
 };
 
-const generateReadme = (answers) => 
+const generateReadme = (answers) => `
+# ${answers.title}
+
+![License](https://img.shields.io/badge/license-${answers.license}-blue.svg)
+
+## Description
+${answers.description}
+
+## Table of Contents
+- [Installation](#installation)
+- [Usage](#usage)
+- [License](#license)
+- [Contributing](#contributing)
+- [Tests](#tests)
+- [Questions](#questions)
+
+## Installation
+${answers.installation}
+
+## Usage
+${answers.usage}
+
+## License
+This project is covered under the ${answers.license} license.
+
+## Contributing
+${answers.contributing}
+
+## Tests
+${answers.tests}
+
+## Questions
+For questions, you can visit my [GitHub](https://github.com/${answers.github}) or contact me through my [email](mailto:${answers.email}).
+`;
+
+promptUser().then((answers) => {
+    fs.writeFileSync('README.md', generateReadme(answers));
+    console.log('README.md generated successfully!');
+});
